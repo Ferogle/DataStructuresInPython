@@ -11,7 +11,7 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
-
+        
 def midpoint_linkedlist(head):
     tortoise=head
     hare=head.next
@@ -88,7 +88,37 @@ def reverseRecursive(head):
     head.next=None
     return currNode
 
-
+def swap_nodes(head, i, j):
+    if i==j:
+        return head
+    if i>j:
+        i,j=j,i
+    x,y=0,0
+    px,cx,py,cy,nx,ny=None,head,None,head,None,None
+    ix,iy=0,0
+    while ix<i or iy<j:
+        if ix<i:
+            px=cx
+            cx=cx.next
+            ix+=1
+        if iy<j:
+            py=cy
+            cy=cy.next
+            iy+=1
+    nx=cx.next
+    ny=cy.next
+    if i+1==j:
+        cy.next=py
+        py.next=ny
+    else:
+        cy.next=nx
+        py.next=cx
+        cx.next=ny
+    if px:
+        px.next=cy
+    if i==0:
+        return cy
+    return head
 def reverseIterative(head):
     prev=None
     curr=head
