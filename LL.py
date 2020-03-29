@@ -128,6 +128,43 @@ def reverseIterative(head):
         prev=curr
         curr=x
     return prev
+def bubbleSortLL(head):
+    if head==None or head.next==None:
+        return head
+    curr=head
+    n=0
+    while curr:
+        curr=curr.next
+        n+=1
+    for i in range(n):
+        prev=None
+        currHead=head
+        currNext=currHead.next
+        flg=1
+        while currNext:
+            if currHead.data>currNext.data:
+                flg=0
+                x=currNext.next
+                currNext.next=currHead
+                currHead.next=x
+                if prev:
+                    prev.next=currNext
+                else:
+                    head=currNext
+                prev = currNext
+                currNext = currHead.next
+            else:
+                prev=currHead
+                currHead=currNext
+                currNext=currNext.next
+            temp=head
+            while temp:
+                print(temp.data,end=' ')
+                temp=temp.next
+            print()
+        if flg:
+            break
+    return head
 # Main
 # Read the link list elements including -1
 arr=list(int(i) for i in input().strip().split(' '))
